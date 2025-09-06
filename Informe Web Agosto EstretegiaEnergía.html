@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panorama del Sector Eléctrico Regional - Agosto 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 40vh;
+            max-height: 450px;
+        }
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        .nav-link {
+            transition: color 0.3s, border-bottom-color 0.3s;
+        }
+        .nav-link:hover {
+            color: #2563eb;
+        }
+        .nav-link.active {
+            color: #2563eb;
+            border-bottom: 2px solid #2563eb;
+        }
+        .tab-button {
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .tab-button.active {
+            background-color: #1e40af;
+            color: white;
+        }
+    </style>
+</head>
+<body class="text-gray-800 smooth-scroll">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold text-gray-800">Sector Eléctrico Regional</h1>
+            <div class="hidden md:flex space-x-8">
+                <a href="#overview" class="nav-link text-gray-600 font-medium pb-1">Panorama General</a>
+                <a href="#country-analysis" class="nav-link text-gray-600 font-medium pb-1">Análisis por País</a>
+                <a href="#tech-trends" class="nav-link text-gray-600 font-medium pb-1">Tecnologías Clave</a>
+                <a href="#insights" class="nav-link text-gray-600 font-medium pb-1">Tendencias y Alertas</a>
+            </div>
+             <div class="md:hidden">
+                <select id="mobile-nav" class="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                    <option value="#overview">Panorama General</option>
+                    <option value="#country-analysis">Análisis por País</option>
+                    <option value="#tech-trends">Tecnologías Clave</option>
+                    <option value="#insights">Tendencias y Alertas</option>
+                </select>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="overview" class="mb-12">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-blue-900 mb-2">Panorama del Sector Eléctrico - Agosto 2025</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Un análisis interactivo de las tendencias, inversiones y desafíos que definen el futuro energético de Latinoamérica y el Caribe.</p>
+                <div class="mt-4 text-xs text-gray-500">
+                    <p>Autor: Coordinación Internacional del Área Corporativa</p>
+                    <p>Fuente: Flash CIER</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <h3 class="text-4xl font-bold text-blue-600">16</h3>
+                    <p class="text-gray-500 font-medium">Países Analizados</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <h3 class="text-4xl font-bold text-green-600">Solar</h3>
+                    <p class="text-gray-500 font-medium">Tecnología más Mencionada</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <h3 class="text-4xl font-bold text-yellow-600">Brasil</h3>
+                    <p class="text-gray-500 font-medium">País con Mayor Actividad</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <h3 class="text-4xl font-bold text-indigo-600">45</h3>
+                    <p class="text-gray-500 font-medium">Señales de Expansión Renovables (SAm)</p>
+                </div>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow-lg mb-10">
+                <h3 class="text-xl font-semibold text-center mb-4 text-gray-700">Resumen Regional</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-bold text-lg text-blue-800 mb-2">Sudamérica</h4>
+                        <p class="text-gray-600">La región muestra un fuerte dinamismo en la expansión de renovables, liderado por la energía solar y eólica. Sin embargo, la congestión en las redes de transmisión emerge como el principal cuello de botella, impulsando la necesidad de inversiones masivas en infraestructura y una regulación clara para el almacenamiento de energía. La actividad regulatoria es intensa, con Argentina y Perú redefiniendo sus mercados, mientras Brasil y Colombia enfrentan debates cruciales sobre la gestión de la oferta y las tarifas.</p>
+                    </div>
+                     <div>
+                        <h4 class="font-bold text-lg text-teal-800 mb-2">Centroamérica, Caribe y Otros</h4>
+                        <p class="text-gray-600">El foco principal está en garantizar la seguridad del suministro ante una demanda en constante crecimiento, impulsada por olas de calor y el desarrollo económico. Las licitaciones de nueva capacidad son protagonistas, con una tendencia clara a incorporar el almacenamiento en baterías como requisito. La modernización de marcos regulatorios obsoletos es un desafío clave en varios países para atraer las inversiones necesarias y facilitar la integración de más generación distribuida.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold text-center mb-4 text-gray-700">Países más mencionados en el Flash CIER</h3>
+                    <div class="chart-container">
+                        <canvas id="countriesChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold text-center mb-4 text-gray-700">Ranking de Tecnologías</h3>
+                    <div class="chart-container">
+                        <canvas id="technologiesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="country-analysis" class="mb-12 pt-16 -mt-16">
+            <h2 class="text-3xl font-bold text-center text-blue-900 mb-8">Análisis Detallado por País</h2>
+             <p class="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-8">Seleccione un país para explorar en profundidad las noticias, alertas y oportunidades más relevantes. Este panel interactivo le permite acceder a un resumen curado de la situación actual, los proyectos en marcha y los desafíos regulatorios y ambientales específicos de cada nación.</p>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="mb-6">
+                    <label for="countrySelector" class="block mb-2 text-sm font-medium text-gray-900">Seleccione un país:</label>
+                    <select id="countrySelector" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                    </select>
+                </div>
+                <div id="country-details">
+                </div>
+            </div>
+        </section>
+
+        <section id="tech-trends" class="mb-12 pt-16 -mt-16">
+            <h2 class="text-3xl font-bold text-center text-blue-900 mb-8">Tecnologías Clave y Modelos de Negocio</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-8">Esta sección visualiza las principales áreas de inversión tecnológica y los modelos de negocio emergentes en la región. El dominio de la energía solar y la creciente necesidad de modernizar la transmisión son las tendencias más destacadas, reflejando el camino hacia una matriz energética más limpia y resiliente.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold text-center mb-4 text-gray-700">Señales de la Expansión</h3>
+                     <div class="chart-container">
+                        <canvas id="expansionChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold text-center mb-4 text-gray-700">Ranking de Modelos de Negocio</h3>
+                    <div class="chart-container">
+                        <canvas id="businessModelChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="insights" class="pt-16 -mt-16">
+            <h2 class="text-3xl font-bold text-center text-blue-900 mb-8">Retos, Oportunidades y Desafíos</h2>
+             <p class="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-8">Explore las tendencias clave, así como las oportunidades de inversión y las alertas regulatorias y ambientales que los actores del sector deben considerar para una planificación estratégica efectiva.</p>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="mb-6 border-b border-gray-200">
+                    <nav class="flex space-x-1" aria-label="Tabs" role="tablist">
+                        <button type="button" class="tab-button hs-tab-active:bg-blue-600 hs-tab-active:text-white py-3 px-4 inline-flex items-center gap-2 bg-transparent text-sm font-medium text-center text-gray-500 rounded-t-lg hover:text-blue-600 active" id="tab-item-1" data-hs-tab="#tab-1" aria-controls="tab-1" role="tab">
+                            Tendencias Clave
+                        </button>
+                        <button type="button" class="tab-button hs-tab-active:bg-blue-600 hs-tab-active:text-white py-3 px-4 inline-flex items-center gap-2 bg-transparent text-sm font-medium text-center text-gray-500 rounded-t-lg hover:text-blue-600" id="tab-item-2" data-hs-tab="#tab-2" aria-controls="tab-2" role="tab">
+                            Oportunidades y Desafíos
+                        </button>
+                        <button type="button" class="tab-button hs-tab-active:bg-blue-600 hs-tab-active:text-white py-3 px-4 inline-flex items-center gap-2 bg-transparent text-sm font-medium text-center text-gray-500 rounded-t-lg hover:text-blue-600" id="tab-item-3" data-hs-tab="#tab-3" aria-controls="tab-3" role="tab">
+                            Alertas Regulatorias y Ambientales
+                        </button>
+                    </nav>
+                </div>
+
+                <div class="mt-3">
+                    <div id="tab-1" role="tabpanel" aria-labelledby="tab-item-1">
+                        <div class="space-y-4">
+                            <div class="p-4 border rounded-lg">
+                                <h4 class="font-semibold text-lg">1. Dominio de la Energía Solar y el Almacenamiento</h4>
+                                <p class="text-gray-600">La tecnología solar fotovoltaica es la más mencionada, tanto en grandes plantas como en generación distribuida. Paralelamente, el almacenamiento (BESS) se consolida como la solución indispensable para gestionar la intermitencia de las renovables y dar flexibilidad al sistema.</p>
+                            </div>
+                             <div class="p-4 border rounded-lg">
+                                <h4 class="font-semibold text-lg">2. Urgencia en la Modernización de la Transmisión</h4>
+                                <p class="text-gray-600">La expansión de la generación renovable ejerce una presión sin precedentes sobre las redes, destacando la necesidad crítica de invertir en nuevas líneas, subestaciones y tecnologías de digitalización para evitar congestiones y vertimientos.</p>
+                            </div>
+                            <div class="p-4 border rounded-lg">
+                                <h4 class="font-semibold text-lg">3. Reformas Regulatorias y de Mercado</h4>
+                                <p class="text-gray-600">Varios países están en procesos de revisión de sus marcos normativos. Argentina lidera con cambios estructurales, mientras Brasil debate la regulación del almacenamiento, Perú la de las licitaciones y Colombia discute la reducción de tarifas.</p>
+                            </div>
+                            <div class="p-4 border rounded-lg">
+                                <h4 class="font-semibold text-lg">4. Expansión de la Generación Distribuida (GD)</h4>
+                                <p class="text-gray-600">El autoconsumo y la GD siguen creciendo de forma acelerada, especialmente en Brasil y México. Este modelo empodera a los consumidores y es clave para la electrificación rural y la resiliencia de las redes locales, aunque enfrenta desafíos regulatorios.</p>
+                            </div>
+                             <div class="p-4 border rounded-lg">
+                                <h4 class="font-semibold text-lg">5. Hidrógeno Verde como Apuesta a Futuro</h4>
+                                <p class="text-gray-600">Aunque con menor frecuencia, el H2V aparece como una apuesta estratégica, principalmente en Chile, Uruguay y Brasil, con esfuerzos centrados en crear marcos de incentivos para posicionar a la región como futura exportadora.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab-2" class="hidden" role="tabpanel" aria-labelledby="tab-item-2">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="text-xl font-semibold mb-3 text-green-700">Oportunidades de Inversión</h4>
+                                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                    <li><b>Almacenamiento de Energía:</b> El alto `curtailment` en Brasil, la penetración renovable en Chile y las licitaciones específicas en Argentina y Rep. Dominicana crean una oportunidad masiva para proyectos BESS.</li>
+                                    <li><b>Modernización de Redes:</b> Inversiones millonarias en transmisión y distribución en Brasil, Perú, Paraguay y México abren un campo para empresas de ingeniería, construcción y tecnología.</li>
+                                    <li><b>Generación Distribuida:</b> El crecimiento exponencial en Brasil y los cambios regulatorios en México y Perú señalan un mercado en plena expansión para instaladores y proveedores.</li>
+                                    <li><b>Hidrógeno Verde:</b> El apoyo gubernamental en Chile y los proyectos a gran escala en Uruguay y Brasil posicionan a la región como un futuro `hub` de H2V.</li>
+                                    <li><b>Licitaciones de Generación:</b> Procesos como la PEG-5 en Guatemala, y las convocatorias en Honduras, Panamá y Rep. Dominicana abren la puerta a nuevos proyectos a gran escala.</li>
+                                </ul>
+                            </div>
+                             <div>
+                                <h4 class="text-xl font-semibold mb-3 text-red-700">Desafíos y Alertas</h4>
+                                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                    <li><b>Congestión de la Red:</b> Es el principal cuello de botella técnico para el crecimiento renovable en toda la región, amenazando la rentabilidad de nuevas inversiones.</li>
+                                    <li><b>Incertidumbre Regulatoria:</b> La postergación de normativas clave (almacenamiento en Brasil, GD en Perú) y los debates sobre reformas tarifarias (Colombia) o de mercado (Argentina, México) pueden retrasar inversiones.</li>
+                                    <li><b>Seguridad del Suministro:</b> Países como Colombia y Argentina enfrentan riesgos de déficit de potencia, mientras que Rep. Dominicana lidia con picos de demanda históricos.</li>
+                                    <li><b>Viabilidad Financiera:</b> El alto costo de financiamiento en países como Colombia y la necesidad de garantías soberanas en Honduras son barreras para la bancabilidad de los proyectos.</li>
+                                     <li><b>Dependencia Climática:</b> Matrices como la de El Salvador, con alta dependencia hidroeléctrica, siguen siendo vulnerables a la variabilidad de las lluvias.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab-3" class="hidden" role="tabpanel" aria-labelledby="tab-item-3">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                             <div>
+                                <h4 class="text-xl font-semibold mb-3 text-blue-800">Alertas Regulatorias</h4>
+                                <div id="regulatory-alerts-container" class="space-y-2 text-gray-700"></div>
+                            </div>
+                             <div>
+                                <h4 class="text-xl font-semibold mb-3 text-teal-800">Alertas Normativas Ambientales</h4>
+                                <div id="environmental-alerts-container" class="space-y-2 text-gray-700"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="bg-gray-800 text-white mt-12">
+        <div class="container mx-auto px-6 py-4 text-center">
+            <p>&copy; 2025 Informe Interactivo del Sector Eléctrico. Generado a partir de datos de Flash CIER.</p>
+        </div>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const data = {
+                countries: [
+                    { name: 'Brasil', mentions: 12, index: 10.0 },
+                    { name: 'México', mentions: 11, index: 9.17 },
+                    { name: 'Colombia', mentions: 11, index: 9.17 },
+                    { name: 'Perú', mentions: 11, index: 9.17 },
+                    { name: 'Argentina', mentions: 10, index: 8.33 },
+                    { name: 'República Dominicana', mentions: 8, index: 6.67 },
+                    { name: 'Panamá', mentions: 6, index: 5.0 },
+                    { name: 'Chile', mentions: 5, index: 4.17 },
+                    { name: 'Uruguay', mentions: 5, index: 4.17 },
+                    { name: 'Honduras', mentions: 4, index: 3.33 },
+                    { name: 'Costa Rica', mentions: 4, index: 3.33 },
+                    { name: 'El Salvador', mentions: 4, index: 3.33 },
+                    { name: 'Guatemala', mentions: 3, index: 2.5 },
+                    { name: 'Puerto Rico', mentions: 2, index: 1.67 },
+                ],
+                technologies: [
+                    { name: 'Solar Fotovoltaica', mentions: 37, index: 10.0 },
+                    { name: 'Almacenamiento', mentions: 33, index: 8.92 },
+                    { name: 'Transmisión', mentions: 31, index: 8.38 },
+                    { name: 'Eólica', mentions: 17, index: 4.59 },
+                    { name: 'Generación Distribuida', mentions: 10, index: 2.7 },
+                    { name: 'Hidrógeno Verde', mentions: 7, index: 1.89 },
+                    { name: 'Hidroeléctrica', mentions: 4, index: 1.08 },
+                    { name: 'Biomasa', mentions: 3, index: 0.81 },
+                    { name: 'Geotermia', mentions: 2, index: 0.54 },
+                    { name: 'Híbrido (Solar-Eólico)', mentions: 2, index: 0.54 },
+                    { name: 'Nuclear', mentions: 2, index: 0.54 },
+                ],
+                expansion: [
+                    { label: 'Incremento Gen. Renovable', value: 78 },
+                    { label: 'Inversión en Transmisión', value: 43 },
+                    { label: 'Incremento Cap. Almacenamiento', value: 22 },
+                    { label: 'Modernización en Distribución', value: 17 },
+                    { label: 'Expansión por Aumento Demanda', value: 6 },
+                    { label: 'Interconexión y Comercio', value: 4 },
+                ],
+                businessModels: [
+                    { label: 'Desarrollo Infra. Transmisión', value: 16 },
+                    { label: 'Autoconsumo / GD', value: 10 },
+                    { label: 'PPA', value: 6 },
+                    { label: 'Mercado a Término (MATER)', value: 3 },
+                    { label: 'Pérdidas Eléctricas', value: 3 },
+                    { label: 'Energy Storage as a Service', value: 1 },
+                ],
+                 countryDetails: {
+                    'Argentina': {
+                        news: `
+                            <h4 class="text-lg font-semibold mb-2 text-gray-800">Resumen de Noticias Clave:</h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li><b>Reformas Estructurales:</b> El gobierno avanza en cambios en el Mercado Eléctrico Mayorista (MEM), habilitando un mercado a término (MATER) más dinámico y definiendo por primera vez un marco de remuneración para el almacenamiento.</li>
+                                <li><b>Licitación de Almacenamiento (AlmaGBA):</b> La licitación para instalar 500 MW de baterías en Buenos Aires recibió ofertas por más del doble de la potencia buscada, con precios muy competitivos, destacando el interés del sector privado.</li>
+                                <li><b>Impulso a Renovables (RIGI y MATER):</b> Se aprobó la adhesión de parques eólicos como el de Olavarría (180 MW) al RIGI y se adjudicaron 646 MW en una nueva ronda del MATER, incluyendo el primer proyecto híbrido solar con baterías.</li>
+                                <li><b>Estabilidad Fiscal:</b> Diputados presentaron un proyecto para prorrogar por 20 años la estabilidad fiscal de la Ley N° 27.191, clave para la inversión a largo plazo.</li>
+                            </ul>
+                        `,
+                        alerts: {
+                           regulatory: "Fuerte actividad regulatoria con decretos de reestructuración del MEM, prórroga de estabilidad fiscal y nuevos lineamientos para el MATER y almacenamiento.",
+                           environmental: "No se identificaron alertas ambientales específicas en las noticias de este mes."
+                        }
+                    },
+                    'Brasil': {
+                       news: `
+                            <h4 class="text-lg font-semibold mb-2 text-gray-800">Resumen de Noticias Clave:</h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li><b>Expansión Solar Récord:</b> Superó los 60 GW de capacidad solar instalada, con la generación distribuida (GD) liderando el crecimiento al sumar más de 5 GW en 2025 y alcanzar 42.3 GW totales.</li>
+                                <li><b>Avances en Hidroelectricidad:</b> La subasta A-5 adjudicó 65 proyectos hidroeléctricos (815.6 MW), marcando un récord histórico en este tipo de licitaciones.</li>
+                                <li><b>Retos en Renovables y Almacenamiento:</b> Enfrenta cortes récord en la generación renovable (curtailment) por sobreoferta. La regulación del almacenamiento fue nuevamente postergada por la ANEEL, aunque se publicaron bases preliminares.</li>
+                                <li><b>Planificación a Futuro:</b> Se lanzó a consulta una nueva subasta de transmisión para 2026 y se proyecta que la primera licitación para eólica offshore se realice en 2026 para operar post-2030.</li>
+                            </ul>
+                        `,
+                        alerts: {
+                           regulatory: "Adiamiento de la regulación de almacenamiento por parte de la ANEEL y apertura de consultas públicas para eólica offshore y nuevas líneas de transmisión.",
+                           environmental: "Avance en la reapertura de la consulta pública para la selección de áreas para eólica offshore."
+                        }
+                    },
+                    'Chile': {
+                        news: `
+                            <h4 class="text-lg font-semibold mb-2 text-gray-800">Resumen de Noticias Clave:</h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li><b>Impulso al Hidrógeno Verde y Almacenamiento:</b> La candidata presidencial Jeannette Jara posicionó los sistemas BESS como eje de su propuesta, buscando 6 GW para 2028. El país avanza en su estrategia de H2V.</li>
+                                <li><b>Desafíos del Sistema:</b> El debate sectorial se centra en los altos costos de la electricidad y la necesidad de fortalecer la red. El Gremio de PMGD pide habilitar la hibridación para escalar el almacenamiento en distribución.</li>
+                                <li><b>Licitación de Suministro:</b> La CNE lanzó una licitación excepcional de corto plazo por 1.200 GWh para el suministro de clientes regulados en 2026.</li>
+                            </ul>
+                        `,
+                         alerts: {
+                           regulatory: "Ingreso del proyecto de ley de fomento al Hidrógeno Verde y debate sobre modificación del DS 88 que afecta a PMGDs.",
+                           environmental: "Fallo del Tribunal Ambiental sienta precedente sobre la rigurosidad exigida en estudios de impacto para líneas de transmisión, especialmente en lo relativo a la fauna."
+                        }
+                    },
+                     'Colombia': {
+                        news: `
+                            <h4 class="text-lg font-semibold mb-2 text-gray-800">Resumen de Noticias Clave:</h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li><b>Debate sobre el Cargo por Confiabilidad:</b> La CREG publicó una resolución que reduce el precio de escasez para renovables, generando preocupación en el sector. Se debate un replanteo técnico para recuperar la confianza.</li>
+                                <li><b>Seguridad Energética y Regulación:</b> Expertos sugieren declarar una "emergencia energética" para agilizar reformas. Se activaron subastas para renovables hacia 2030.</li>
+                                 <li><b>Nuevos Marcos Técnicos:</b> La CREG abrió a consulta pública dos proyectos de resolución que redefinen la integración técnica de renovables y se estableció un nuevo esquema de Pago por Diferencias (PpD).</li>
+                                <li><b>Expansión Solar y Eólica Offshore:</b> El país superó los 2.2 GW solares operativos y puso en marcha su primera subasta para eólica marina.</li>
+                                 <li><b>Autogeneración Remota:</b> Esta figura se consolida como una solución clave para expandir el mercado solar, especialmente en zonas no interconectadas.</li>
+                            </ul>
+                        `,
+                         alerts: {
+                           regulatory: "Intenso debate sobre el 'cargo por confiabilidad' y la necesidad de reformas estructurales. La CREG abrió a consulta nuevas exigencias técnicas para renovables.",
+                           environmental: "La lentitud de las Corporaciones Autónomas Regionales (CAR) en el licenciamiento ambiental es el principal cuello de botella para destrabar 18 GW solares."
+                        }
+                    },
+                     'Perú': {
+                        news: `
+                            <h4 class="text-lg font-semibold mb-2 text-gray-800">Resumen de Noticias Clave:</h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li><b>Potencial Renovables y Regulación:</b> El país tiene un pipeline de más de 25 GW en proyectos, pero su desarrollo depende de la reglamentación de la nueva Ley 32249, que habilita licitaciones y PPAs. La falta de reglamento para H2 verde y GD genera incertidumbre.</li>
+                                <li><b>Desafíos de Infraestructura:</b> Expertos advierten que la expansión renovable debe ir acompañada de una planificación de la transmisión para evitar la congestión, aprendiendo del caso chileno.</li>
+                                 <li><b>Impulso de Clientes Libres:</b> Los grandes consumidores, especialmente mineras y agroindustrias, están impulsando el mercado solar a través de PPAs.</li>
+                                 <li><b>Costos del Almacenamiento:</b> Los altos costos de los sistemas BESS son una barrera, y el sector propone estímulos fiscales y subastas específicas para impulsarlos.</li>
+                            </ul>
+                        `,
+                         alerts: {
+                           regulatory: "Alta expectación por la reglamentación de la Ley 32249 (licitaciones, almacenamiento) y la Ley de Hidrógeno Verde. El reglamento de generación distribuida sigue pendiente.",
+                           environmental: "No se identificaron alertas ambientales específicas en las noticias de este mes."
+                        }
+                    },
+                    'Uruguay': {
+                        news: `
+                            <h4 class="text-lg font-semibold mb-2 text-gray-800">Resumen de Noticias Clave:</h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                               <li><b>Planificación a Largo Plazo:</b> El gobierno confirmó el inicio de debates para un nuevo acuerdo multipartidario de energía con un horizonte a 2050.</li>
+                               <li><b>Hidrógeno Verde:</b> Avanza la construcción de la primera planta de H2V del país (Proyecto Kahirós) y el proyecto de HIF Global en Paysandú, que incluye 2 GW renovables.</li>
+                               <li><b>Eólica Offshore:</b> ANCAP pospuso la licitación de bloques eólicos marinos, aunque mantiene el objetivo de iniciar operaciones hacia 2040.</li>
+                               <li><b>Nuevas Renovables:</b> UTE evalúa esquemas para incorporar 100 MW de energía fotovoltaica a partir de 2026, priorizando también la expansión de la transmisión.</li>
+                            </ul>
+                        `,
+                        alerts: {
+                           regulatory: "Se confirmó el inicio de debates para un nuevo acuerdo multipartidario de energía con visión a 2050.",
+                           environmental: "No se identificaron alertas ambientales específicas en las noticias de este mes."
+                        }
+                    },
+                    'México': {
+                         news: `
+                            <h4 class="text-lg font-semibold mb-2 text-gray-800">Resumen de Noticias Clave:</h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                               <li><b>Reforma y Reconfiguración del Mercado:</b> La nueva ley redefine la generación distribuida, eliminando el "net metering", y genera incertidumbre sobre el rol del sector privado. Se espera la regulación secundaria para aclarar las reglas.</li>
+                               <li><b>Potencial de Inversión y "Nearshoring":</b> Hay un potencial de inversión eólica de USD 6.500 millones frenado por la falta de un marco claro. El "nearshoring" impulsa la demanda y la necesidad de nueva generación.</li>
+                               <li><b>Infraestructura y Generación Distribuida:</b> CFE lanzó un plan de expansión de la transmisión hasta 2030. La GD alcanzó los 5 GW instalados y se prepara para una "segunda ola" con nuevas reglas.</li>
+                               <li><b>Adquisición Estratégica:</b> La empresa Cox compró Iberdrola México por 4.200 millones de dólares, consolidándose como una "utility" integrada en el país.</li>
+                            </ul>
+                        `,
+                        alerts: {
+                           regulatory: "La nueva Ley del Sector Eléctrico y la eliminación del 'net metering' reconfiguran el mercado, generando incertidumbre a la espera de la regulación secundaria. Se pide reactivar las subastas a largo plazo.",
+                           environmental: "No se identificaron alertas ambientales específicas en las noticias de este mes."
+                        }
+                    },
+                    'República Dominicana': {
+                        news: `
+                            <h4 class="text-lg font-semibold mb-2 text-gray-800">Resumen de Noticias Clave:</h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                               <li><b>Récords de Demanda y Nueva Capacidad:</b> El sistema alcanzó múltiples récords de demanda. El gobierno anunció la incorporación de 612 MW térmicos y lanzó una licitación por hasta 600 MW renovables.</li>
+                               <li><b>Licitación Histórica con Almacenamiento:</b> La nueva licitación exige por primera vez la incorporación de sistemas BESS, marcando un hito para el país y atrayendo el interés de inversionistas.</li>
+                               <li><b>Crecimiento Económico y Renovables:</b> La "Meta RD 2036" busca duplicar el PIB con las renovables como motor principal. El sector energético atrajo el 25.7% de la IED en el primer semestre.</li>
+                           </ul>
+                        `,
+                        alerts: {
+                           regulatory: "La nueva licitación de 600 MW establece exigencias técnicas sin precedentes para almacenamiento y servicios auxiliares, marcando un antes y un después en el sistema.",
+                           environmental: "No se identificaron alertas ambientales específicas en las noticias de este mes."
+                        }
+                    },
+                     'Panamá': {
+                        news: `
+                           <h4 class="text-lg font-semibold mb-2 text-gray-800">Resumen de Noticias Clave:</h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                               <li><b>Nuevo Liderazgo y Continuidad:</b> Rodrigo Rodríguez asumió como nuevo Secretario de Energía, con el respaldo del sector que pide continuidad en el calendario de licitaciones y la planificación a largo plazo.</li>
+                               <li><b>Lineamientos de Política Energética:</b> El nuevo gobierno se enfocará en atraer inversiones, electrificar zonas no atendidas y consolidar la integración regional con Colombia.</li>
+                               <li><b>Licitaciones en Marcha:</b> La distribuidora ENSA confirmó su participación como compradora en la primera licitación del cronograma plurianual, que busca asegurar contratos renovables a largo plazo.</li>
+                               <li><b>Reforma Regulatoria Pendiente:</b> Expertos advierten que la Ley 6 de 1997 está obsoleta y es necesaria una reforma integral para atraer inversiones en nuevas tecnologías como el almacenamiento.</li>
+                           </ul>
+                        `,
+                        alerts: {
+                           regulatory: "El nuevo gobierno enfrenta el desafío de reformar la Ley 6 de 1997 para adecuarla a la transición energética. Se destaca el valor estratégico del calendario de licitaciones.",
+                           environmental: "No se identificaron alertas ambientales específicas en las noticias de este mes."
+                        }
+                    },
+                    'Honduras': {
+                        news: `
+                            <h4 class="text-lg font-semibold mb-2 text-gray-800">Resumen de Noticias Clave:</h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li><b>Licitación Estratégica de 1.500 MW:</b> El país avanza en una licitación de largo plazo para transformar su sistema, priorizando renovables (65%) y almacenamiento (20% obligatorio).</li>
+                                <li><b>Respaldo Internacional y Bancabilidad:</b> BID Invest mostró interés en financiar los proyectos adjudicados. Sin embargo, la bancabilidad del proceso es un punto crítico debido a la deuda de la estatal ENEE con los generadores privados.</li>
+                           </ul>
+                        `,
+                        alerts: {
+                           regulatory: "La bancabilidad de la licitación de 1.500 MW es el punto crítico, dependiendo de las garantías que ofrezca el Estado para asegurar la confianza de los inversionistas.",
+                           environmental: "No se identificaron alertas ambientales específicas en las noticias de este mes."
+                        }
+                    },
+                    'Costa Rica': {
+                        news: `
+                           <h4 class="text-lg font-semibold mb-2 text-gray-800">Resumen de Noticias Clave:</h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li><b>Nueva Ola Solar y Almacenamiento:</b> El ICE planifica añadir 270 MW solares y habilitar condiciones para 120 MW de almacenamiento. Se adjudicaron 86 MW en cinco plantas solares privadas.</li>
+                               <li><b>Impulso a la Generación Distribuida:</b> Una nueva regulación facilita la participación privada en proyectos de autoconsumo, con un límite de 5 MW por sistema.</li>
+                               <li><b>Estabilidad de Red:</b> Expertos destacan la necesidad de incorporar tecnología "Grid Forming" para mantener la estabilidad de la red ante el crecimiento de las renovables intermitentes.</li>
+                           </ul>
+                        `,
+                        alerts: {
+                           regulatory: "Actualización de la regulación para facilitar la participación privada en proyectos de autoconsumo y generación distribuida.",
+                           environmental: "No se identificaron alertas ambientales específicas en las noticias de este mes."
+                        }
+                    },
+                     'El Salvador': {
+                        news: `
+                            <h4 class="text-lg font-semibold mb-2 text-gray-800">Resumen de Noticias Clave:</h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li><b>Consolidación como Exportador:</b> El país ha transformado su matriz, pasando de importador a exportador neto de energía renovable, principalmente solar.</li>
+                               <li><b>Desafío del Almacenamiento:</b> El rápido crecimiento de la energía solar (20% de la matriz de DELSUR) ha hecho urgente la necesidad de una regulación para el almacenamiento que permita gestionar la intermitencia.</li>
+                               <li><b>Refuerzo de Redes:</b> La distribuidora DELSUR está fortaleciendo sus redes para gestionar la alta penetración de generación solar distribuida.</li>
+                           </ul>
+                        `,
+                        alerts: {
+                           regulatory: "Urgencia por destrabar la regulación de almacenamiento para no frenar el impulso solar y permitir una gestión eficiente de la red.",
+                           environmental: "No se identificaron alertas ambientales específicas en las noticias de este mes."
+                        }
+                    },
+                    'Guatemala': {
+                        news: `
+                            <h4 class="text-lg font-semibold mb-2 text-gray-800">Resumen de Noticias Clave:</h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                              <li><b>Reto de Coordinación:</b> El país enfrenta el desafío de alinear la licitación de generación PEG-5 (hasta 1.400 MW) con la de transporte PET-3. La AGTE advierte que los plazos de la PET-3 son cortos y que se requerirá otra licitación para las necesidades de la PEG-5.</li>
+                           </ul>
+                        `,
+                        alerts: {
+                           regulatory: "El gran tema regulatorio es el diseño y ejecución coordinada de las licitaciones de generación (PEG-5) y transporte (PET-3).",
+                           environmental: "No se identificaron alertas ambientales específicas en las noticias de este mes."
+                        }
+                    },
+                     'Puerto Rico': {
+                        news: `
+                            <h4 class="text-lg font-semibold mb-2 text-gray-800">Resumen de Noticias Clave:</h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                              <li><b>Incertidumbre Regulatoria:</b> La falta de un Plan Integrado de Recursos (PIR) actualizado y el debate sobre la ley de medición neta están frenando la toma de decisiones y encareciendo la transición energética.</li>
+                               <li><b>Inversión Solar en Pausa:</b> La indefinición ha puesto en pausa las decisiones de los "prosumidores", afectando el crecimiento de la energía solar distribuida, clave para la resiliencia del sistema.</li>
+                           </ul>
+                        `,
+                        alerts: {
+                           regulatory: "La falta de un Plan Integrado de Recursos (PIR) actualizado y la indefinición sobre la ley de medición neta generan una parálisis que afecta las inversiones.",
+                           environmental: "No se identificaron alertas ambientales específicas en las noticias de este mes."
+                        }
+                    }
+                }
+            };
+            
+            const createChart = (ctx, type, data, options) => new Chart(ctx, { type, data, options });
+
+            const countriesChartCtx = document.getElementById('countriesChart').getContext('2d');
+            createChart(countriesChartCtx, 'bar', {
+                labels: data.countries.map(c => c.name),
+                datasets: [{
+                    label: 'Menciones en Noticias',
+                    data: data.countries.map(c => c.mentions),
+                    backgroundColor: 'rgba(37, 99, 235, 0.8)',
+                    borderColor: 'rgba(37, 99, 235, 1)',
+                    borderWidth: 1
+                }]
+            }, {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { x: { beginAtZero: true } }
+            });
+
+            const technologiesChartCtx = document.getElementById('technologiesChart').getContext('2d');
+            createChart(technologiesChartCtx, 'bar', {
+                labels: data.technologies.map(t => t.name),
+                datasets: [{
+                    label: 'Menciones por Tecnología',
+                    data: data.technologies.map(t => t.mentions),
+                    backgroundColor: 'rgba(2, 132, 199, 0.8)',
+                    borderColor: 'rgba(2, 132, 199, 1)',
+                    borderWidth: 1
+                }]
+            }, {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { x: { beginAtZero: true } }
+            });
+
+            const expansionChartCtx = document.getElementById('expansionChart').getContext('2d');
+            createChart(expansionChartCtx, 'bar', {
+                labels: data.expansion.map(e => e.label),
+                datasets: [{
+                    label: 'Menciones por Señal de Expansión',
+                    data: data.expansion.map(e => e.value),
+                    backgroundColor: 'rgba(13, 148, 136, 0.8)',
+                    borderColor: 'rgba(13, 148, 136, 1)',
+                    borderWidth: 1
+                }]
+            }, {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true } }
+            });
+            
+            const businessModelChartCtx = document.getElementById('businessModelChart').getContext('2d');
+            createChart(businessModelChartCtx, 'bar', {
+                labels: data.businessModels.map(b => b.label),
+                datasets: [{
+                    label: 'Menciones por Modelo de Negocio',
+                    data: data.businessModels.map(b => b.value),
+                    backgroundColor: 'rgba(79, 70, 229, 0.8)',
+                    borderColor: 'rgba(79, 70, 229, 1)',
+                    borderWidth: 1
+                }]
+            }, {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { x: { beginAtZero: true } }
+            });
+
+            const countrySelector = document.getElementById('countrySelector');
+            const countryDetailsContainer = document.getElementById('country-details');
+            const regulatoryAlertsContainer = document.getElementById('regulatory-alerts-container');
+            const environmentalAlertsContainer = document.getElementById('environmental-alerts-container');
+
+            data.countries.sort((a, b) => a.name.localeCompare(b.name)).forEach(country => {
+                const option = document.createElement('option');
+                option.value = country.name;
+                option.textContent = country.name;
+                countrySelector.appendChild(option);
+            });
+            
+            function updateCountryDetails(countryName) {
+                const details = data.countryDetails[countryName];
+                if (details) {
+                    countryDetailsContainer.innerHTML = `
+                        <div class="p-4 border-l-4 border-blue-500 bg-blue-50 rounded-r-lg">
+                            ${details.news}
+                        </div>
+                        <div class="mt-4 p-4 border-l-4 border-yellow-500 bg-yellow-50 rounded-r-lg">
+                             <h4 class="text-lg font-semibold mb-2 text-yellow-800">Alertas Regulatorias:</h4>
+                             <p class="text-gray-700">${details.alerts.regulatory}</p>
+                             <h4 class="text-lg font-semibold mt-4 mb-2 text-teal-800">Alertas Ambientales:</h4>
+                             <p class="text-gray-700">${details.alerts.environmental}</p>
+                        </div>
+                    `;
+                } else {
+                     countryDetailsContainer.innerHTML = `<p class="text-gray-500">No hay detalles disponibles para este país.</p>`;
+                }
+            }
+            
+            function populateAlerts() {
+                let regHtml = '<ul class="list-disc list-inside space-y-2">';
+                let envHtml = '<ul class="list-disc list-inside space-y-2">';
+                
+                const sortedCountries = Object.keys(data.countryDetails).sort();
+
+                sortedCountries.forEach(countryName => {
+                    const country = data.countryDetails[countryName];
+                    if (country.alerts.regulatory && !country.alerts.regulatory.includes("No se identificaron")) {
+                        regHtml += `<li><b>${countryName}:</b> ${country.alerts.regulatory}</li>`;
+                    }
+                    if (country.alerts.environmental && !country.alerts.environmental.includes("No se identificaron")) {
+                         envHtml += `<li><b>${countryName}:</b> ${country.alerts.environmental}</li>`;
+                    }
+                });
+
+                regHtml += '</ul>';
+                envHtml += '</ul>';
+                
+                regulatoryAlertsContainer.innerHTML = regHtml;
+                environmentalAlertsContainer.innerHTML = envHtml.includes('<li>') ? envHtml : '<p>No se identificaron alertas ambientales significativas en las noticias de este mes.</p>';
+            }
+
+
+            countrySelector.addEventListener('change', (e) => {
+                updateCountryDetails(e.target.value);
+            });
+            
+            updateCountryDetails(countrySelector.value);
+            populateAlerts();
+
+            const tabs = document.querySelectorAll('.tab-button');
+            const tabPanels = document.querySelectorAll('[role="tabpanel"]');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    const target = document.querySelector(tab.getAttribute('data-hs-tab'));
+                    tabPanels.forEach(panel => panel.classList.add('hidden'));
+                    target.classList.remove('hidden');
+                });
+            });
+
+            const mobileNav = document.getElementById('mobile-nav');
+            mobileNav.addEventListener('change', function() {
+                const sectionId = this.value;
+                document.querySelector(sectionId).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
